@@ -44,9 +44,20 @@ class _HomePageState extends State<HomePage> {
               itemCount: users.length,
               itemBuilder: (context, index) {
                 Users user = users[index];
-                return ListTile(
-                  title: Text(user.name),
-                  subtitle: Text(user.address.city),
+                return GestureDetector(
+                  onTap: () => print(index),
+                  child: ListTile(
+                    title: Text(user.name),
+                    subtitle: Text(user.address.city),
+                    trailing: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          users.remove(users[index]);
+                        });
+                      },
+                      icon: const Icon(Icons.delete),
+                    ),
+                  ),
                 );
               },
             );
